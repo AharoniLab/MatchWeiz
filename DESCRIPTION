@@ -1,0 +1,19 @@
+Date: 2016-02-17
+Package: matchWeiz
+Version: 1.0.1
+Title: MS reference library creation supporting multi-modular compound annotation
+Author: Nir Shahaf
+Maintainer: Nir Shahaf <nirshachaf@gmail.com>
+Depends: R (>= 3.1.0)
+Imports: Rdisop,fdrtool,CHNOSZ
+Description: A framework for creating MS libraries based on high resolution
+    LC-MS data. The process depends upon preprocessed output from the xcms/CAMERA packages.
+    It also relies on data from a predefined mix of chemical standards that were injected 
+    with the biological samples. The runMatchWeiz function applies a multi-modular annotation 
+    algorithm in order to match experimental data with the generated MS library.
+URL: https://github.com/AsaphA/MetaboMatch
+License: GPL (>= 2)
+LazyLoad: Yes
+BuildVignettes: no
+NeedsCompilation: no
+RoxygenNote: 5.0.1

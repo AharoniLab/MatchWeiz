@@ -1,0 +1,31 @@
+Version 1.3.5
+  * Include xset object in GCresults data file
+
+Version 1.3.4
+  * Optimize alignmentLC function
+
+Version 1.3.3
+  * various small changes in code (esthetic only)
+
+Version 1.3.2
+  * Changed LC settings to explicitly include retcor arguments
+  * Corrected LC bug on the PeakTable export when data files 
+    are stored into multiple subfolders
+
+Version 1.3.1
+  * Changed LC settings so that the retcor algorithm is passed
+    correctly to the underlying XCMS function
+  * Changed LC pipeline so that all user-defined settings are actually used
+
+Version 1.2.0
+  * Adopted Oct 2014
+
+DEVELOPMENT VERSION 1.1.0
+  * updated email address maintainer
+  * fixed an issue in GC pipeline when fewer files are analysed than
+    the min.class.size value of the "betweenSamples" setting. Changes
+    in runGC.R and matchSamples2Samples.R
+
+
+VERSION 1.0.0
+  * Original Bioconductor release.

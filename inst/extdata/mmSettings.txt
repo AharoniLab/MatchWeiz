@@ -1,0 +1,11 @@
+
+protonMass = 1.007278,  # [M-H]- or [M+H]+
+sodiumMass = 22.9892,  # [M+Na]+
+potassiumMass = 38.9632,	# [M+K]+
+formicAcidMass = 44.9982, 	# [M-H+HCOOH]-
+oxygenMass = 16.000748, 	# [M-2H+H2O]    
+MAX_RANK = 15,   # max number of ranked fragments
+GROUP_TH = 2,  # min. group size for peak annotation
+INT_TH = 2,  # intensity threshold (percent of most intense highE peak)
+RT_TH = 4,  # max (seconds) RT distance in RT clustering
+massSD = 5,  # expected stddev of mass analyzer in ppm
