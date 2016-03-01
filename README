@@ -1,0 +1,17 @@
+matchWeiz R package
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
+or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+How to install package dependencies:
+
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("Rdisop")
+install.packages("fdrtool")
+## install latest (>=1.0.7-4) version of the CHNOZS package
+install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
+
+
+
