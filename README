@@ -13,5 +13,7 @@ install.packages("fdrtool")
 ## install latest (>=1.0.7-4) version of the CHNOZS package
 install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
 
-
-
+## The 'devtools' package is required to install directly from GitHub
+install.packages("devtools")
+library("devtools")
+install_github("AsaphA/matchWeiz")
