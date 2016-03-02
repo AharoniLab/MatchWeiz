@@ -8,6 +8,3 @@ importFrom(CHNOSZ,as.chemical.formula)
 importFrom(CHNOSZ,makeup)
 importFrom(fdrtool,phalfnorm)
 importFrom(fdrtool,sd2theta)
-
-importClassesFrom(Biobase, "Versioned")
-importFrom(Biobase, validMsg)
