@@ -75,7 +75,7 @@ runMatch = function(
   
   require(Rdisop)
   data("mmSettings")
-  data(thermo)
+  #data(thermo)
   
   ## Fix any possible DB problem of large mass tolerance:
 #  if (any(range (MSlib$peaks$massTol) > 0.1)) { 
