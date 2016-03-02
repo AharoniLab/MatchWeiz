@@ -34,7 +34,9 @@ readable format using function \code{summarizeMWresults}.
 \examples{
 \donttest{
 data(sampleLib)
-runMatch ("tests/Tom_all_negative_2ch_xan.tsv","tests/rt_files_neg/","negative","tom_test",MSlib.neg)
-runMatch ("tests/Tom_all_negative_2ch_xan.tsv","tests/rt_files_neg/","positive","tom_test",MSlib.pos) }
+tomPL_neg <- system.file("extdata/Tom_all_negative_2ch_xan.tsv",package="matchWeiz")
+rtFiles_neg <- system.file("extdata/rt_files_neg",package="matchWeiz")
+runMatch (tomPL_neg,rtFiles_neg,"negative","tom_test",MSlib.neg) 
+}
 }
 

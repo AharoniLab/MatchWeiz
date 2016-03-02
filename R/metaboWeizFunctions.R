@@ -54,8 +54,10 @@ run_RT_module = function (plList,polarity,mixType,project,massTol,confint=0.99) 
 #' @return NULL on a succesful completion.
 #' @examples\donttest{
 #' data(sampleLib)
-#' runMatch ("tests/Tom_all_negative_2ch_xan.tsv","tests/rt_files_neg/","negative","tom_test",MSlib.neg)
-#' runMatch ("tests/Tom_all_negative_2ch_xan.tsv","tests/rt_files_neg/","positive","tom_test",MSlib.pos) }
+#' tomPL_neg <- system.file("extdata/Tom_all_negative_2ch_xan.tsv",package="matchWeiz")
+#' rtFiles_neg <- system.file("extdata/rt_files_neg",package="matchWeiz")
+#' runMatch (tomPL_neg,rtFiles_neg,"negative","tom_test",MSlib.neg) 
+#' }
 #' @export
 runMatch = function(
   cameraPeaklist,   
@@ -65,16 +67,18 @@ runMatch = function(
   MSlib,
   massTol = 20
 ) {    
-
+  
   # RT correction mix type - at the moment this is the single option used.
   mixType ="stdMix"
   
   set.seed(0408)  
+  require(Rdisop)
+  data("mmSettings")
   
-  ## Fix DB problem of large mass tolerance:
-  if (any(range (MSlib$peaks$massTol) > 0.1)) { 
-    Warning ("MS library has mass tolerance larger than 0.1 Da.")
-  }
+  ## Fix any possible DB problem of large mass tolerance:
+#  if (any(range (MSlib$peaks$massTol) > 0.1)) { 
+#    Warning ("MS library has mass tolerance larger than 0.1 Da.")
+#  }
   ## 	Read sample peak list
   print ("Reading peak list file:")
   print (cameraPeaklist)

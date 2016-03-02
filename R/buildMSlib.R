@@ -1,17 +1,23 @@
 #' Build chemical standards based MS library.
 #' 
 #' @param stdInfo A string, the path plus file name directing to a pool information file.
-#' @param stdPath A string, the path to a directory containing the peak list files corresponding with sample pools.
+#' @param stdFiles A string, the path to a directory containing the peak list files corresponding with sample pools.
 #' @param polarity A string, the MS ionization mode.
 #' @return Returns the MS library object of chemical standards as specified in the input file.
 #' @examples\donttest{
-#' testlib.neg <- buildMSlib ("tests/samplePool_neg.tsv","pool_data","negative")
-#' testlib.pos <- buildMSlib ("tests/samplePool_pos.tsv","pool_data","positive") }
+#' stdInfo <- system.file("extdata/samplePool_neg.tsv",package="matchWeiz")
+#' stdFiles <- system.file("extdata/pool_data",package="matchWeiz")
+#' testlib.neg <- buildMSlib (stdInfo,stdFiles,"negative")
+#' stdInfo <- system.file("extdata/samplePool_pos.tsv",package="matchWeiz")
+#' testlib.pos <- buildMSlib (stdInfo,stdFiles,"positive") 
+#' }
 #' @export
 buildMSlib = function(stdInfo,
-                      stdPath,    
+                      stdFiles,    
                       polarity                  
   ) {
+  
+  require(Rdisop)
   
   tryCatch({
     info = read.delim(stdInfo,as.is=TRUE)
@@ -21,9 +27,9 @@ buildMSlib = function(stdInfo,
   
   pools = unique(info$stdFile)  
   tryCatch ({
-    stdData = lapply (file.path(stdPath,pools),read.delim,as.is=TRUE) 
+    stdData = lapply (file.path(stdFiles,pools),read.delim,as.is=TRUE) 
   }, error=function(err) {
-    stop ("Failed to read the std. peak lists:", conditionMessage(err))
+    stop ("Failed to read peak lists of chemical standards:", conditionMessage(err))
   })
 
   sampleNames = unlist(lapply(pools,function(x) {strsplit(x,split=".(csv|tsv|txt)")[[1]]}))

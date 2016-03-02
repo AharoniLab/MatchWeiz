@@ -4,12 +4,12 @@
 \alias{buildMSlib}
 \title{Build chemical standards based MS library.}
 \usage{
-buildMSlib(stdInfo, stdPath, polarity)
+buildMSlib(stdInfo, stdFiles, polarity)
 }
 \arguments{
 \item{stdInfo}{A string, the path plus file name directing to a pool information file.}
 
-\item{stdPath}{A string, the path to a directory containing the peak list files corresponding with sample pools.}
+\item{stdFiles}{A string, the path to a directory containing the peak list files corresponding with sample pools.}
 
 \item{polarity}{A string, the MS ionization mode.}
 }
@@ -21,7 +21,11 @@ Build chemical standards based MS library.
 }
 \examples{
 \donttest{
-testlib.neg <- buildMSlib ("tests/samplePool_neg.tsv","pool_data","negative")
-testlib.pos <- buildMSlib ("tests/samplePool_pos.tsv","pool_data","positive") }
+stdInfo <- system.file("extdata/samplePool_neg.tsv",package="matchWeiz")
+stdFiles <- system.file("extdata/pool_data",package="matchWeiz")
+testlib.neg <- buildMSlib (stdInfo,stdFiles,"negative")
+stdInfo <- system.file("extdata/samplePool_pos.tsv",package="matchWeiz")
+testlib.pos <- buildMSlib (stdInfo,stdFiles,"positive") 
+}
 }
 

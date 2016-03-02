@@ -97,8 +97,8 @@ getIds = function(
     
   	data (rulesets)
     if (polarity=="positive") { adductRules = ruleset.pos} else { adductRules = ruleset.neg }
-  	data (isoMatchModel)	
-  	data (xrankScoreMat) # fragMatch
+  	data(isoMatchModel)	
+  	data(xrankScoremat) # fragMatch
     
   	# get correct intensity column - depends on existance of prefix (01) or (02) for MS channels
     maxIntCols = grep(".*01$", names(pl))[max.col(pl[,grep(".*01$", names(pl))])]
@@ -361,19 +361,19 @@ getIds = function(
 			sampleScore = scoreSpectra (
 				    annotData[["ranked.frgs"]],
 				    id_list[[id]][["ranked.db.frgs"]],
-				    xrank_cuni_scoreMat )
+				    xrankScoremat )
         if (sampleScore>=0) {
           # get the max positive score
           fullScore = scoreSpectra (
             id_list[[id]][["ranked.db.frgs"]],
             id_list[[id]][["ranked.db.frgs"]],
-            xrank_cuni_scoreMat )
+            xrankScoremat )
         } else {
           # compute the max negative score
           fullScore = scoreSpectra (
             rep(0,length(id_list[[id]][["ranked.db.frgs"]])),
             id_list[[id]][["ranked.db.frgs"]],
-            xrank_cuni_scoreMat ) * (-1)         
+            xrankScoremat ) * (-1)         
         }
     ## Using the "native" X-rank score without normalization - this will give priority to higher 
     ##	fragment hits, which is the original idea of Roman Milonas...
@@ -384,7 +384,7 @@ getIds = function(
 		} else { 
       # In case of no fragments for library match with fragments - apply a penalty:
   		db.ranks = db.ranks[,1]
-  		mismatch.score = scoreSpectra( rep(0,length(db.ranks)), db.ranks, xrank_cuni_scoreMat )
+  		mismatch.score = scoreSpectra( rep(0,length(db.ranks)), db.ranks, xrankScoremat )
   		annotData[["xrank"]] = round(mismatch.score,1)
 		}		  
 	 } else {

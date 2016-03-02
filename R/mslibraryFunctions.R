@@ -1,18 +1,3 @@
-#####################
-# common adducts		#
-#####################
-
-# protonMass = 1.007278	# [M-H]- or [M+H]+
-# sodiumMass = 22.9892	# [M+Na]+
-# potassiumMass = 38.9632	# [M+K]+
-# formicAcidMass = 44.9982 	# [M-H+HCOOH]-
-# oxygenMass = 16.000748 	# [M-2H+H2O]
-
-#######################
-# other global vars		#
-#######################
-
-# MAX_RANK = 15 
 
 getAtoms = function(formula) {
 	# parse chemical formula and return the atomic composition
@@ -27,82 +12,6 @@ getAtoms = function(formula) {
 }
 
 
-# parseCameraAdducts = function ( rule, mainIon ) {
-# 	# parse the Camera adduct formula into relevant symbols:
-# 	# 1. Number of main ion specie
-# 	# 2a. The adduct symbol
-# 	# 2b. The adduct type (adduct or fragment)
-# 	# 3. The number of charges
-# 	# The formula prototype:
-# 	#	[M-2H+NH4]-
-# 	# 	"["[Mcount]"M"([adductType][adductSimbol])*"][chargeCount]*"-"
-# 
-# 	# Here we go:
-# 	output = character()
-# #	charge = rule$charge
-# 	Mcount = rule$nmol	
-# 	for (i in 1:Mcount) { output = paste(output,mainIon,sep="") }
-# 
-# #print (output)
-# #
-# #	# Get the charge number
-# 	formula = rule$name
-# 	# Get the adduct type and symbol
-# 	adduct = sub (x=formula, pattern="\\[.*M(.*)\\].*$", replacement="\\1")
-# #print (adduct)
-# 	for (i in 1:(length (strsplit (adduct,split="[A-Z][a-z]?\\d*")[[1]]))) {
-# print (i)
-# 		# Get adduct type
-# 		adductType = sub (x=adduct, pattern="^([-|+]).*", replacement="\\1")
-# print (adductType)
-# 		# Remove adduct type chars from string
-# #		adduct = sub (x=adduct, pattern="^[-|+]", replacement="")
-# print (adduct)
-# 		# Get the first element
-# 		adductSymb = sub (pattern="^([-|+]\\d?[A-Z][a-z]?\\d*).*$", replacement="\\1",x=adduct)
-# print (adductSymb)
-# #print (adduct)		
-# 		# Get the rest
-# 		adduct = sub (adductSymb,"",adduct, fixed=TRUE) # strsplit(adduct, split=adductSymb)[[1]][2]
-# 		# Add the sign
-# 		if (!length(grep("^[-|+]",adduct))) { adduct = paste (adductType,adduct,sep="") }
-# #		if (!length(grep("^[-|+]",adduct)) & adductType=='-') { adduct = paste (adductType,adduct,sep="") }
-# #		else if (length(grep("^[+]",adduct))) { adduct = sub (x=adduct, pattern="^[-|+]", replacement="") }
-# print (adduct)		
-# #stop()
-# 		if (adductType=='-') { 
-# print (adductSymb)
-# 			if (adductSymb == "-H") { adductNum=1 } 
-# 			else if (adductSymb == "-2H") { adductNum=2 } 				
-# 			else if (adductSymb == "-3H") { adductNum=3 } 
-# 			else {
-# 				# look for "[notDigit][digit]" pattern
-# 				adductNum = sub (x=adductSymb,pattern="^-\\D+(\\d*)$",replacement="\\1")
-# 			}
-# 			if (adductNum=="") {
-# #				switch (adductSymb, "-H" = 1, "-2H" = 2, "-3H" = 3)
-# 				adductNum = 1
-# #				 
-# 			}
-# print (adductNum)
-# #
-# 			adductSymb = sub (x=adductSymb,pattern="-\\d?(\\D+)\\d*$",replacement="\\1")
-# 			adductSymb = paste ("(",adductSymb,"-",adductNum,")",sep="")
-# print (adductSymb)
-# 		}
-# 		adductSymb = sub (x=adductSymb, pattern="^[+]", replacement="")
-# 		output = paste(output,adductSymb,sep="")
-# 	}
-# 
-# 	print (paste("Converted to:",output))
-# 	#output = as.chemical.formula(makeup (output))
-# 	output = CHNOSZ::as.chemical.formula(CHNOSZ::makeup(output))
-# 	print (output) 
-# 	return (output)	
-# }
-
-
-# peaks.out = convertResults(x, file, ionMode, poolData[i,])
 convertResults = function(peakData,mol,polarity,stdInfo) {
   
 	lowE = 1
@@ -204,7 +113,6 @@ convertResults = function(peakData,mol,polarity,stdInfo) {
 			peaks.out = rbind(peaks.out, data)
 		}
 	}
-#browser()
 	rownames(peaks.out) = NULL
 	return(peaks.out)
 }	
@@ -215,7 +123,6 @@ findCompound = function(poolData,pl,polarity)
 # An intermediate function to extract data of pooled samples #
 # Pass data to a generic peak-picking function 'peak detect' #
 ##############################################################
-
 ##
 ## 	Estimate RT range by RT window number
 ##
@@ -239,9 +146,7 @@ if (is.na(poolData["RT"])) {
   chemFormula = poolData["formula"]
 
 	if (length(grep("\\+$",chemFormula))) { 
-#		print(poolData["formula"])
-#browser()
-		# remove trailing plus sign 
+	# remove trailing plus sign 
 	#	poolData["chemFormula"] = substring(poolData["chemFormula"], 1,nchar(poolData["chemFormula"])-1)		
 		# set mode
 		naturalCation = 1 
@@ -628,7 +533,6 @@ buildLibobject = function(DBpeaks, polarity, massTol=0.01) {
       frgs[order(frgs$highE, decreasing=T),][1:min(MAX_RANK,nrow(frgs)),]
     }
   })
-#  browser()  
   names(Libobj$ranked) = dbIds
   rownames(Libobj$peaks) = NULL
   print ("Done: library object")
