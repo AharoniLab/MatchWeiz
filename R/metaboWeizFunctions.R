@@ -8,6 +8,7 @@ options(stringsAsFactors = FALSE)
 #'@importFrom fdrtool sd2theta
 #'@importFrom CHNOSZ makeup 
 #'@importFrom CHNOSZ as.chemical.formula
+data(thermo)
 
 run_RT_module = function (plList,polarity,mixType,project,massTol,confint=0.99) {
 
@@ -34,7 +35,7 @@ run_RT_module = function (plList,polarity,mixType,project,massTol,confint=0.99) 
   print ("**** RT Module - OK ****")
   return (rt.shift.model)
 }
-
+#' # Run matching and get annotations in a single ionization mode#' # Run matching and get annotations in a single ionization mode#' # Run matching and get annotations in a single ionization mode
 #' Match input LC-MS features to the given MS library.
 #' 
 #' The 'matchWeiz' multi-modular search method is applied to match the input biologically derived sample data to the 
