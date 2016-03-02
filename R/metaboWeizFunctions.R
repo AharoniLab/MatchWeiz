@@ -8,7 +8,6 @@ options(stringsAsFactors = FALSE)
 #'@importFrom fdrtool sd2theta
 #'@importFrom CHNOSZ makeup 
 #'@importFrom CHNOSZ as.chemical.formula
-data(thermo)
 
 run_RT_module = function (plList,polarity,mixType,project,massTol,confint=0.99) {
 
@@ -73,8 +72,10 @@ runMatch = function(
   mixType ="stdMix"
   
   set.seed(0408)  
+  
   require(Rdisop)
   data("mmSettings")
+  data(thermo)
   
   ## Fix any possible DB problem of large mass tolerance:
 #  if (any(range (MSlib$peaks$massTol) > 0.1)) { 
