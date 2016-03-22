@@ -17,3 +17,31 @@ install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
 install.packages("devtools")
 library("devtools")
 install_github("AsaphA/matchWeiz")
+
+## Preparation the "stdMix" (i.e., the mix of chemical standards used by the software for retention time correction)
+The individual stock solutions of the chemical standards were prepared at a concentration of 1 mg/ml in methanol, 
+with the following exceptions:
+1) Stocks of L-Tryptophan and L-Tyrosine were prepared in 80%MeOH containing 2% formic acid as follows: 
+first, formic acid was used for dilution, and then the corresponding amounts of water and methanol were added.
+2) Stock of alpha-Tometin was prepared at a concentration of 0.5 mg/ml in MeOH.
+
+Next, all individual stock solutions were sonicated for 20 min in bath sonicator to improve dilution and equal volumes 
+from each stock were combined together to form the stock-Mix solution. Finally, a working Std-Mix solution was prepared 
+by diluting  a stock-Mix solution 10-fold with methanol. The final concentrations of standards in the std-Mix solution are: 
+3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
+
+## The list of required chemical standards are given below, together with their vendor's IDs
+Chlorogenic acid	(Fluka,	25700)
+Caffeic acid	(Sigma,	C0625)
+Rutin hydrate	(Sigma,	R5143)
+Cinnamic acid	(Fluka,	96340)
+Quercetin dihydrate	(Sigma,	Q0125)
+p-Coumaric acid	(Sigma,	C9008)
+D-Phenylalanine	(Fluka,	78019)
+L-Tryptophan	(Sigma,	T8941)
+Naringenin	(Fluka,	71155)
+Ferulic acid	(Aldrich,	128708)
+Sinapic acid	(Sigma,	D7927)
+L-Tyrosine	(Sigma,	T-1020)
+Tomatin	(ExtraSynthese,	602)
+Kaempferol	(Fluka,	60010)
