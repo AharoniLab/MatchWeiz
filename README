@@ -16,7 +16,7 @@ install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
 ## The 'devtools' package is required to install directly from GitHub
 install.packages("devtools")
 library("devtools")
-install_github("AsaphA/matchWeiz")
+install_github("AharoniLab/MatchWeiz")
 
 ## Preparation the "stdMix" (i.e., the mix of chemical standards used by the software for retention time correction)
 The individual stock solutions of the chemical standards were prepared at a concentration of 1 mg/ml in methanol, 
@@ -31,17 +31,19 @@ by diluting  a stock-Mix solution 10-fold with methanol. The final concentration
 3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
 
 ## The list of required chemical standards are given below, together with their vendor's IDs
-Chlorogenic acid	(Fluka,	25700)
-Caffeic acid	(Sigma,	C0625)
-Rutin hydrate	(Sigma,	R5143)
-Cinnamic acid	(Fluka,	96340)
+## Note: we recommand injecting a minimum number of 10-12 chemical standards for effectiveness.
+Chlorogenic acid	  (Fluka,	25700)
+Caffeic acid	      (Sigma,	C0625)
+Rutin hydrate	      (Sigma,	R5143)
+Cinnamic acid	      (Fluka,	96340)
 Quercetin dihydrate	(Sigma,	Q0125)
-p-Coumaric acid	(Sigma,	C9008)
-D-Phenylalanine	(Fluka,	78019)
-L-Tryptophan	(Sigma,	T8941)
-Naringenin	(Fluka,	71155)
-Ferulic acid	(Aldrich,	128708)
-Sinapic acid	(Sigma,	D7927)
-L-Tyrosine	(Sigma,	T-1020)
-Tomatin	(ExtraSynthese,	602)
-Kaempferol	(Fluka,	60010)
+p-Coumaric acid	    (Sigma,	C9008)
+D-Phenylalanine	    (Fluka,	78019)
+L-Tryptophan	      (Sigma,	T8941)
+Naringenin	        (Fluka,	71155)
+Ferulic acid	      (Aldrich,	128708)
+Sinapic acid	      (Sigma,	D7927)
+L-Tyrosine	        (Sigma,	T-1020)
+Tomatin	            (ExtraSynthese,	602)
+Kaempferol	        (Fluka,	60010)
+
