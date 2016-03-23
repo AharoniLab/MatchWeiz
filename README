@@ -11,6 +11,7 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("Rdisop")
 install.packages("fdrtool")
 ## install latest (>=1.0.7-4) version of the CHNOZS package
+## Note: this currently doesn't work on MacOS
 install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
 
 ## The 'devtools' package is required to install directly from GitHub
@@ -31,19 +32,19 @@ by diluting  a stock-Mix solution 10-fold with methanol. The final concentration
 3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
 
 ## The list of required chemical standards are given below, together with their vendor's IDs
-## Note: we recommand injecting a minimum number of 10-12 chemical standards for effectiveness.
-Chlorogenic acid	  (Fluka,	25700)
-Caffeic acid	      (Sigma,	C0625)
-Rutin hydrate	      (Sigma,	R5143)
-Cinnamic acid	      (Fluka,	96340)
-Quercetin dihydrate	(Sigma,	Q0125)
-p-Coumaric acid	    (Sigma,	C9008)
-D-Phenylalanine	    (Fluka,	78019)
-L-Tryptophan	      (Sigma,	T8941)
-Naringenin	        (Fluka,	71155)
-Ferulic acid	      (Aldrich,	128708)
-Sinapic acid	      (Sigma,	D7927)
-L-Tyrosine	        (Sigma,	T-1020)
-Tomatin	            (ExtraSynthese,	602)
-Kaempferol	        (Fluka,	60010)
+## Note: we recommand injecting a minimum number of 10-12 chemical standards for the method to be effective
+Chlorogenic acid	    (Fluka,	25700)
+Caffeic acid	        (Sigma,	C0625)
+Rutin hydrate	        (Sigma,	R5143)
+Cinnamic acid	        (Fluka,	96340)
+Quercetin dihydrate	  (Sigma,	Q0125)
+p-Coumaric acid	      (Sigma,	C9008)
+D-Phenylalanine	      (Fluka,	78019)
+L-Tryptophan	        (Sigma,	T8941)
+Naringenin	          (Fluka,	71155)
+Ferulic acid	        (Aldrich,	128708)
+Sinapic acid	        (Sigma,	D7927)
+L-Tyrosine	          (Sigma,	T-1020)
+Tomatin	              (ExtraSynthese,	602)
+Kaempferol	          (Fluka,	60010)
 
