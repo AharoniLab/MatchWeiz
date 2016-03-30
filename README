@@ -6,13 +6,23 @@ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 How to install package dependencies:
 
-## try http:// if https:// URLs are not supported
+## Note: try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")
 biocLite("Rdisop")
 install.packages("fdrtool")
 ## install latest (>=1.0.7-4) version of the CHNOZS package
-## Note: this currently doesn't work on MacOS
 install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
+## Note: this currently doesn't work on a MacOS. A possible solution is
+## to manually install gfortran and add the aliases to the R env.:
+## curl -O http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2
+## sudo tar fvxz gfortran-4.8.2-darwin13.tar.bz2 -C /
+## mkdir -p ~/.R
+## touch ~/.R/Makevars
+## Next, add these aliases into 'Makevars':
+## F77="gfortran-4.8"
+## FC="gfortran-4.8"
+## Compile and install CHNOSZ from source: 
+## install.packages("CHNOSZ", repos="http://R-Forge.R-project.org",type="source")
 
 ## The 'devtools' package is required to install directly from GitHub
 install.packages("devtools")
@@ -34,20 +44,6 @@ from each stock were combined together to form the stock-Mix solution. Finally, 
 by diluting  a stock-Mix solution 10-fold with methanol. The final concentrations of standards in the std-Mix solution are: 
 3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
 
-## The list of required chemical standards are given below, together with their vendor's IDs
-## Note: we recommand injecting a minimum number of 10-12 chemical standards for the method to be effective
-Chlorogenic acid	    (Fluka,	25700)
-Caffeic acid	        (Sigma,	C0625)
-Rutin hydrate	        (Sigma,	R5143)
-Cinnamic acid	        (Fluka,	96340)
-Quercetin dihydrate	  (Sigma,	Q0125)
-p-Coumaric acid	      (Sigma,	C9008)
-D-Phenylalanine	      (Fluka,	78019)
-L-Tryptophan	        (Sigma,	T8941)
-Naringenin	          (Fluka,	71155)
-Ferulic acid	        (Aldrich,	128708)
-Sinapic acid	        (Sigma,	D7927)
-L-Tyrosine	          (Sigma,	T-1020)
-Tomatin	              (ExtraSynthese,	602)
-Kaempferol	          (Fluka,	60010)
-
+## The list of required chemical standards is specified in: "inst/extdata/StdMix.tsv", 
+## We recommand including a minimum of 10-12 of the specified chemical standards in the mix
+## and injecting the mix at least 2-3 times over the experiment for effective RT correction.
