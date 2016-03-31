@@ -6,14 +6,44 @@ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 How to install package dependencies:
 
-## try http:// if https:// URLs are not supported
+## Note: try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")
 biocLite("Rdisop")
 install.packages("fdrtool")
 ## install latest (>=1.0.7-4) version of the CHNOZS package
 install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
+## Note: this currently doesn't work on a MacOS. A possible solution is
+## to manually install gfortran and add the aliases to the R env.:
+## curl -O http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2
+## sudo tar fvxz gfortran-4.8.2-darwin13.tar.bz2 -C /
+## mkdir -p ~/.R
+## touch ~/.R/Makevars
+## Next, add these aliases into 'Makevars':
+## F77="gfortran-4.8"
+## FC="gfortran-4.8"
+## Compile and install CHNOSZ from source: 
+## install.packages("CHNOSZ", repos="http://R-Forge.R-project.org",type="source")
 
 ## The 'devtools' package is required to install directly from GitHub
 install.packages("devtools")
 library("devtools")
-install_github("AsaphA/matchWeiz")
+install_github("AharoniLab/MatchWeiz")
+
+## Usage examples are available inside the R package help files for individual functions. 
+## start help by: "help(package="matchWeiz")"
+
+## Preparation the "stdMix" (i.e., the mix of chemical standards used by the software for retention time correction)
+The individual stock solutions of the chemical standards were prepared at a concentration of 1 mg/ml in methanol,
+with the following exceptions:
+1) Stocks of L-Tryptophan and L-Tyrosine were prepared in 80%MeOH containing 2% formic acid as follows: 
+first, formic acid was used for dilution, and then the corresponding amounts of water and methanol were added.
+2) Stock of alpha-Tometin was prepared at a concentration of 0.5 mg/ml in MeOH.
+
+Next, all individual stock solutions were sonicated for 20 min in bath sonicator to improve dilution and equal volumes 
+from each stock were combined together to form the stock-Mix solution. Finally, a working Std-Mix solution was prepared 
+by diluting  a stock-Mix solution 10-fold with methanol. The final concentrations of standards in the std-Mix solution are: 
+3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
+
+## The list of required chemical standards is specified in: "inst/extdata/StdMix.tsv", 
+## We recommand including a minimum of 10-12 of the specified chemical standards in the mix
+## and injecting the mix at least 2-3 times over the experiment for effective RT correction.
