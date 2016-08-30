@@ -100,9 +100,12 @@ getIds = function(
   	data(isoMatchModel)	
   	data(xrankScoremat) # fragMatch
     
-  	# get correct intensity column - depends on existance of prefix (01) or (02) for MS channels
+  	# get indices for intensity columns - depends on existance of prefix (01) or (02) for MS channels!
+  	colsMs1 = grep(".*01$", names(pl))+3
+  	colsMs2 = grep(".*02$", names(pl))+3
+  	# get all maximum MS1 intensity columns across peak table rows: 
     maxIntCols = grep(".*01$", names(pl))[max.col(pl[,grep(".*01$", names(pl))])]
-    # add columns for additinal fields
+    # add extra columns accounting for additinal fields
     maxIntCols = maxIntCols+3
 
 	  # gets annotation list object (output of 'annotateFeature')
@@ -258,32 +261,39 @@ getIds = function(
        	    } else {
         	massErr = abs((principal$mz - observed$mz)/principal$mz*1e+06)
       	    }
-
-	    if (length(massErr)>1) { massErr = massErr[which.min(massErr)] }
-
+    # eliminate multiple scoring hits by min mass error
+	    if (length(massErr)>1) { 
+	      observed = observed[which.min(massErr),]
+	      massErr = massErr[which.min(massErr)] 
+	      }
 	    ## use the same error function as for parent peak, with est. SD.massErr = 6ppm
       	    annotData[["principalIon"]] = round(1-fdrtool::phalfnorm(massErr, theta=fdrtool::sd2theta(6)),2) 		
     	   }
   	 }
   	} 
+    
+#    runMatch("__tests__/JAsig_neg_2ch_PL_new.tsv","__tests__/stdMix","negative","JAsig_test",DBobj)  
   ## Adjust parent ion annotation according to principal ion annotation:
   ##	if principal ion is NOT detected apply intensity filter	on parent peak annotation
-  if (!(annotData[["principalIon"]]) & annotData[["parentIon"]]) {
-	# check intensity ratio for main ion annotation - only when the principal ion was not detected
-	if ( parentPeak[maxIntCols[parentPeak$feature]] < parentPeak[maxIntCols[parentPeak$feature]+1]/2 ) {
-		annotData[["parentIon"]] = 0	
-	}
+  if ( !(annotData[["principalIon"]]) & annotData[["parentIon"]] ) {
+	# check intensity ratio between MS channels - but only when the principal ion was not detected
+	  if ( mean(as.numeric(parentPeak[colsMs1])) < mean(as.numeric(parentPeak[colsMs2])) ) {
+		  annotData[["parentIon"]] = 0	
+	  }
   # now, check if principal ion is also valid 
   } else if ((annotData[["principalIon"]])) {
-	# in case princ. ion is an adduct - check intensities between channels
+	# in cases the principal ion is a higher mass adduct - do MS channels comparison to lowerreduce FPs
+    # in the other cases - where the mass is lower then mol. mass - we skip the intensity comparison 
+    # to allow for cases where a true fragment (e.g. loss of H2O) is also the principal ion - and at
+    # the same time it's also observed as stronger ion on Ms2 channel due to increased fragmentation
 	if  ((observed$mz > id_list[[id]]$M.parent) & 
-	     (observed[maxIntCols[observed$feature]] < observed[maxIntCols[observed$feature]+1]/2)) 
+	     (mean(as.numeric(observed[colsMs1])) < mean(as.numeric(observed[colsMs2]))) ) 
 	{
 		annotData[["principalIon"]] = 0
 	}
   }
   ##
-  ## Param 3: find how many peaks match a tagged DB peak (apart from main ion)
+  ## Param 3: find how many peaks match a tagged DB peak (apart from the main/principal ions)
   ##
   annotData[["tagged"]] = 0
 	dbPeaks = id_list[[id]][["db.peaks"]][rownames(id_list[[id]][["db.peaks"]]) %in% found.peaks$db_position,]

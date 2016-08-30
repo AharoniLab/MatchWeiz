@@ -28,7 +28,7 @@
 #' summarizeMWresults ("tom_test",MSlib.neg,"both",MSlib.pos)
 #' }
 #' # Running time: the example annotation run using the demo library (total 76 enteries) 
-#' # took 65 seconds (on an eight core Intel i7-3820 CPU @ 3.60GHz, 16Gb RAM) 
+#' # took 65 seconds (on an Intel i7-3820 CPU @ 3.60GHz, 16Gb RAM) 
 #' # Annotation versus the complete WEIZMASS library (total 3309 enteries) 
 #' # took 341 seconds using the same hardware.
 #' @export

@@ -1,4 +1,4 @@
-matchWeiz R package
+﻿R package MatchWeiz
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. 
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ 
@@ -10,10 +10,10 @@ How to install package dependencies:
 source("https://bioconductor.org/biocLite.R")
 biocLite("Rdisop")
 install.packages("fdrtool")
-## install latest (>=1.0.7-4) version of the CHNOZS package
-install.packages("CHNOSZ", repos="http://R-Forge.R-project.org")
-## Note: this currently doesn't work on a MacOS. A possible solution is
-## to manually install gfortran and add the aliases to the R env.:
+## install the latest (>=1.0.8) version of the CHNOZS package:
+install.packages("CHNOSZ")
+## In case this doesn't work on MacOS. A possible solution is to compile
+## and install from source, with first manually install gfortran and add the aliases to the R env.:
 ## curl -O http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2
 ## sudo tar fvxz gfortran-4.8.2-darwin13.tar.bz2 -C /
 ## mkdir -p ~/.R
@@ -45,5 +45,5 @@ by diluting  a stock-Mix solution 10-fold with methanol. The final concentration
 3.3 ug/ml for alpha-Tomatin and 6.6 ug/ml for all other compounds.
 
 ## The list of required chemical standards is specified in: "inst/extdata/StdMix.tsv", 
-## We recommand including a minimum of 10-12 of the specified chemical standards in the mix
+## We recommend including a minimum of 10-12 of the specified chemical standards in the mix
 ## and injecting the mix at least 2-3 times over the experiment for effective RT correction.

@@ -136,7 +136,7 @@ findParentPeak = function (
 # Output: shifted RT model data with CIs for the mean 	                #
 #########################################################################
 
-rtModule = function (plList,ionMode,refTable,project,massTol,confint=0.95,massErrorSurface=NULL) {
+rtModule = function (plList,ionMode,refTable,project,massTol,confint=0.99,massErrorSurface=NULL) {
 
 	minRT = 55
   
@@ -249,8 +249,8 @@ rtModule = function (plList,ionMode,refTable,project,massTol,confint=0.95,massEr
   	# Add CIs
   	lines (matched.log$rt.lib, matched.log$rt.lib+CI,col=3,lty=3)
   	lines (matched.log$rt.lib, matched.log$rt.lib-CI,col=3,lty=3)
-  	text (0,maxRt,labels=paste("Model offset:",round(rt.shift.model$coefficients[1])," sec"),col=2,pos=4)
-  	text (0,maxRt-40,labels=paste("CI =",round(CI),"sec"),col=2,pos=4)
+  	text (0,maxRt,labels=paste("Model offset:",round(rt.shift.model$coefficients[1]),"s"),col=2,pos=4)
+  	text (0,maxRt-40,labels=paste("CI =",round(CI,1),"s"),col=2,pos=4)
   	text (0,maxRt-80,labels=paste("Observations:",nrow(matched.log)),col=2,pos=4)		
   	text (0,maxRt-120,labels=paste("Observations in CI span:",inSpan),col=2,pos=4)		
   	dev.off()	
